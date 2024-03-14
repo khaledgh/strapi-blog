@@ -2,63 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+.dark P {
+    color: white !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-
-.card {
-  position: relative;
-  background-color: var(--mantine-color-body);
-}
-
-.rating {
-  position: absolute;
-  top: var(--mantine-spacing-xs);
-  right: rem(12px);
-  pointer-events: none;
-}
-
-.title {
-  display: block;
-  margin-top: var(--mantine-spacing-md);
-  margin-bottom: rem(5px);
-}
-
-.action {
-  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
-
-  @mixin hover {
-    background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-6));
-  }
-}
-
-.footer {
-  margin-top: var(--mantine-spacing-md);
-}

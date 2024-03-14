@@ -11,11 +11,21 @@ const axiosClient = axios.create({
 
 const getArticlesList = () => axiosClient.get("posts?populate=*");
 
+const getRelatedArticlesList = (tagsQuery, excludedId) =>
+  axiosClient.get(`posts?${tagsQuery}&filters[id][$notIn]=${excludedId}&pagination[pageSize]=10&populate=*`);
+
+  const getRelatedArticlesByTagList = (tagsQuery) =>
+  axiosClient.get(`posts?filters[tags][Name][$contains]=${tagsQuery}&pagination[pageSize]=10&populate=*`);
+
 const getArticleById = (id) =>
-  axiosClient.get(
-    "/posts?filters[id][$in][0]=" + id + "&populate=*"
-  );
+  axiosClient.get("/posts?filters[id][$in][0]=" + id + "&populate=*");
 
 const getCategory = () => axiosClient.get("categories?populate=*");
 
-export default { getCategory, getArticlesList, getArticleById };
+export default {
+  getCategory,
+  getArticlesList,
+  getArticleById,
+  getRelatedArticlesList,
+  getRelatedArticlesByTagList
+};
