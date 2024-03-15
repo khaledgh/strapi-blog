@@ -22,6 +22,10 @@ export default [
             "*.tiny.cloud",
             "blob:",
             "*.strapi.io",
+            "http:",
+            "https:",
+            "ws:",
+            "blob:",
           ],
           "img-src": [
             "'self'",
