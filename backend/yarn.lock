@@ -879,15 +879,15 @@
   resolved "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.3.1.tgz"
   integrity sha512-EsBwpc7hBUJWAsNPBmJy4hxWx12v6bshQsldrVmjxJoc3isbxhOrF2IcCpaXxfvq03NwkI7sbsOLXbYuqF/8Ww==
 
-"@esbuild/win32-x64@0.16.17":
+"@esbuild/linux-x64@0.16.17":
   version "0.16.17"
-  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.16.17.tgz"
-  integrity sha512-y+EHuSchhL7FjHgvQL/0fnnFmO4T1bhvWANX6gcnqTjtnKWbTvUMCpGnv2+t+31d7RzyEAYAd4u2fnIhHL6N/Q==
+  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.16.17.tgz"
+  integrity sha512-mdPjPxfnmoqhgpiEArqi4egmBAMYvaObgn4poorpUaqmvzzbvqbowRllQ+ZgzGVMGKaPkqUmPDOOFQRUFDmeUw==
 
-"@esbuild/win32-x64@0.19.11":
+"@esbuild/linux-x64@0.19.11":
   version "0.19.11"
-  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.19.11.tgz"
-  integrity sha512-vfkhltrjCAb603XaFhqhAF4LGDi2M4OrCRrFusyQ+iTLQ/o60QQXxc9cZC/FFpihBI9N1Grn6SMKVJ4KP7Fuiw==
+  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.19.11.tgz"
+  integrity sha512-grbyMlVCvJSfxFQUndw5mCtWs5LO1gUlwP4CDi4iJBbVpZcqLVT29FxgGuBJGSzyOxotFG4LoO5X+M1350zmPA==
 
 "@floating-ui/core@^1.0.0":
   version "1.6.0"
@@ -1510,10 +1510,15 @@
   resolved "https://registry.npmjs.org/@remirror/core-constants/-/core-constants-2.0.2.tgz"
   integrity sha512-dyHY+sMF0ihPus3O27ODd4+agdHMEmuRdyiZJ2CCWjPV5UFmn17ZbElvk6WOGVE4rdCJKZQCrPV2BcikOMLUGQ==
 
-"@rollup/rollup-win32-x64-msvc@4.12.1":
+"@rollup/rollup-linux-x64-gnu@4.12.1":
   version "4.12.1"
-  resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.12.1.tgz"
-  integrity sha512-n+vkrSyphvmU0qkQ6QBNXCGr2mKjhP08mPRM/Xp5Ck2FV4NrHU+y6axzDeixUrCBHVUS51TZhjqrKBBsHLKb2Q==
+  resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.12.1.tgz"
+  integrity sha512-nD3YcUv6jBJbBNFvSbp0IV66+ba/1teuBcu+fBBPZ33sidxitc6ErhON3JNavaH8HlswhWMC3s5rgZpM4MtPqQ==
+
+"@rollup/rollup-linux-x64-musl@4.12.1":
+  version "4.12.1"
+  resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-4.12.1.tgz"
+  integrity sha512-7/XVZqgBby2qp/cO0TQ8uJK+9xnSdJ9ct6gSDdEr4MfABrjTyrW6Bau7HQ73a2a5tPB7hno49A0y1jhWGDN9OQ==
 
 "@rushstack/node-core-library@4.0.2":
   version "4.0.2"
@@ -2220,10 +2225,15 @@
     p-map "4.0.0"
     yup "0.32.9"
 
-"@swc/core-win32-x64-msvc@1.4.6":
+"@swc/core-linux-x64-gnu@1.4.6":
   version "1.4.6"
-  resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.4.6.tgz"
-  integrity sha512-UagPb7w5V0uzWSjrXwOavGa7s9iv3wrVdEgWy+/inm0OwY4lj3zpK9qDnMWAwYLuFwkI3UG4Q3dH8wD+CUUcjw==
+  resolved "https://registry.npmjs.org/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.4.6.tgz"
+  integrity sha512-10JL2nLIreMQDKvq2TECnQe5fCuoqBHu1yW8aChqgHUyg9d7gfZX/kppUsuimqcgRBnS0AjTDAA+JF6UsG/2Yg==
+
+"@swc/core-linux-x64-musl@1.4.6":
+  version "1.4.6"
+  resolved "https://registry.npmjs.org/@swc/core-linux-x64-musl/-/core-linux-x64-musl-1.4.6.tgz"
+  integrity sha512-EGyjFVzVY6Do89x8sfah7I3cuP4MwtwzmA6OlfD/KASqfCFf5eIaEBMbajgR41bVfMV7lK72lwAIea5xEyq1AQ==
 
 "@swc/core@^1.3.96":
   version "1.4.6"
