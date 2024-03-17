@@ -2,6 +2,7 @@
 
 import ArcticlesList from "@/app/_components/ArcticlesList";
 import GlobalApi from "@/app/_utils/GlobalApi";
+import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
 interface ArticleProps {
@@ -9,12 +10,12 @@ interface ArticleProps {
 }
 
 const Tag: React.FC<ArticleProps> = ({ params }) => {
-  const [articles, SetArticles] = useState([]);
+  const [articles, SetArticles] = useState<Article[]>([]);
   useEffect(() => {
     getArticleList();
   }, []);
   const getArticleList = () => {
-    GlobalApi.getRelatedArticlesByTagList(params.tag).then((resp: any) => {
+    GlobalApi.getRelatedArticlesByTagList(params.tag).then((resp: AxiosResponse<ArticlesResponse>) => {
       SetArticles(resp?.data?.data);
     });
   };

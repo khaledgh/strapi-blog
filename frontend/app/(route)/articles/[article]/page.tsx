@@ -9,9 +9,12 @@ import HighlightedText from "@/app/_components/CodeText";
 import Image from "next/image";
 import { Loader } from "@mantine/core";
 import Link from "next/link";
+import { AxiosResponse } from "axios";
 interface ArticleProps {
   params: any; // Update with the actual type of params
 }
+
+const PUBLIC_URL =process.env.NEXT_PUBLIC_URL;
 
 const Article: React.FC<ArticleProps> = ({ params }) => {
   const [doctorsList, setDoctorsList] = useState<any[]>([]);
@@ -27,33 +30,34 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
 
   const getArticle = () => {
     GlobalApi.getArticleById(params.article)
-      .then((res: any) => {
+      .then((res: AxiosResponse<ArticlesResponse>) => {
         setDoctorsList(res?.data?.data || []);
         console.log(params.article);
         const tagsQuery = (res?.data?.data[0]?.attributes?.tags?.data)
           .map(
-            (tag) => `filters[tags][Name][$contains]=${tag?.attributes?.Name}`
+            (tag: Tag) =>
+              `filters[tags][Name][$contains]=${tag?.attributes?.Name}`
           )
           .join("&");
         getRelatedArticle(tagsQuery);
         setLoading(false);
         setError(null);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         setLoading(false);
         setError("Error fetching data");
       });
   };
-  const getRelatedArticle = (tags) => {
+  const getRelatedArticle = (tags: String) => {
     console.log(tags);
     GlobalApi.getRelatedArticlesList(tags, params.article)
-      .then((res: any) => {
+      .then((res: AxiosResponse<ArticlesResponse>) => {
         setRelatedList(res?.data?.data);
         console.log(res?.data?.data);
         setLoading(false);
         setError(null);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         setLoading(false);
         setError("Error fetching data");
       });
@@ -61,10 +65,10 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
 
   const getCategories = () => {
     GlobalApi.getCategory()
-      .then((res: any) => {
+      .then((res: AxiosResponse<CategoriesResponse>) => {
         setCategoriesList(res?.data?.data || []);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         setLoading(false);
         setError("Error fetching data");
       });
@@ -91,9 +95,9 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
           </h1>
           <h1 className="text-sm mt-2">
             <span className="italic text-gray-400">By </span>
-            <span className="italic">Ramy Jaber </span> On 
-             <span className="text-gray-400 ml-1"> 
-               {new Date(
+            <span className="italic">Ramy Jaber </span> On
+            <span className="text-gray-400 ml-1">
+              {new Date(
                 doctorsList[0]?.attributes?.createdAt
               ).toLocaleDateString("en-US", {
                 month: "long",
@@ -107,7 +111,7 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
         <div className="my-5">
           <Image
             alt=""
-            src={`http://localhost:1337${doctorsList[0]?.attributes?.Image?.data?.attributes?.url}`}
+            src={`${PUBLIC_URL+doctorsList[0]?.attributes?.Image?.data?.attributes?.url}`}
             width={900}
             height={900}
             className="h-full w-full object-contain rounded-3xl shadow-xl"
@@ -128,7 +132,7 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
             >
               <Image
                 alt=""
-                src={`http://localhost:1337${item.attributes?.Image?.data?.attributes?.url}`}
+                src={`${PUBLIC_URL+item.attributes?.Image?.data?.attributes?.url}`}
                 width={160}
                 height={140}
                 className="w-24 h-20 object-cover  rounded-2xl shadow-3xl"
@@ -158,15 +162,17 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
         <div className="mt-5">
           <h1 className="font-bold text-xl">Tags</h1>
           <div className="flex flex-wrap mt-1 gap-1">
-            {doctorsList[0]?.attributes?.tags?.data?.map((item: any, index) => (
-              <Link
-                href={"/tags/" + item?.attributes?.Name}
-                className="cursor-pointer px-4 py-2 rounded-full  border-[1px] border-gray-500 text-gray-400 shadow-md font-bold text-xs w-max my-2"
-                key={index}
-              >
-                {item?.attributes?.Name}
-              </Link>
-            ))}
+            {doctorsList[0]?.attributes?.tags?.data?.map(
+              (item: Tag, index: number) => (
+                <Link
+                  href={"/tags/" + item?.attributes?.Name}
+                  className="cursor-pointer px-4 py-2 rounded-full  border-[1px] border-gray-500 text-gray-400 shadow-md font-bold text-xs w-max my-2"
+                  key={index}
+                >
+                  {item?.attributes?.Name}
+                </Link>
+              )
+            )}
           </div>
         </div>
       </div>

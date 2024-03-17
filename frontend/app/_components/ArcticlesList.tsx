@@ -3,17 +3,20 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import SkeletonArticles from "./SkeletonArticles";
 
-const extractFirst40Words = (htmlContent) => {
+
+const PUBLIC_URL =process.env.NEXT_PUBLIC_URL;
+
+const extractFirst40Words = (htmlContent: string) => {
   const plainText = htmlContent?.replace(/<[^>]+>/g, "");
   const first40Words = plainText?.split(/\s+/).slice(0, 40).join(" ");
   return first40Words;
 };
 
-const ArcticlesList = ({ articles }: any) => {
+const ArcticlesList: React.FC<{ articles: Article[] }> = ({ articles }) => {
   return (
     <div className="grid grid-cols-1 md:gird-cols-2 lg:grid-cols-4 gap-4">
       {articles?.length > 0
-        ? articles?.map((item, index) => (
+        ? articles?.map((item: Article, index: number) => (
             <Link
               href={"/articles/" + item.id}
               className="overflow-hidden rounded-2xl shadow-md transition hover:shadow-lg dark:border-[1px] dark:border-gray-700"
@@ -21,7 +24,7 @@ const ArcticlesList = ({ articles }: any) => {
             >
               <Image
                 alt=""
-                src={`http://localhost:1337${item.attributes?.Image?.data?.attributes?.url}`}
+                src={`${PUBLIC_URL+item.attributes?.Image?.data?.attributes?.url}`}
                 width={800}
                 height={800}
                 className="h-56 w-full object-cover p-2 rounded-3xl shadow-3xl"
@@ -37,7 +40,6 @@ const ArcticlesList = ({ articles }: any) => {
                   ).toLocaleString()}
                   className="block text-xs text-gray-300"
                 >
-                  {" "}
                   {new Date(item?.attributes?.createdAt).toLocaleString()}{" "}
                 </time>
                 <a href="#">
