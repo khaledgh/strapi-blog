@@ -10,11 +10,19 @@ import Image from "next/image";
 import { Loader } from "@mantine/core";
 import Link from "next/link";
 import { AxiosResponse } from "axios";
+import Head from "next/head";
+import { NextSeo } from "next-seo";
 interface ArticleProps {
   params: any; // Update with the actual type of params
 }
 
-const PUBLIC_URL =process.env.NEXT_PUBLIC_URL;
+const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
+
+const extractFirst40Words = (htmlContent: string) => {
+  const plainText = htmlContent?.replace(/<[^>]+>/g, "");
+  const first40Words = plainText?.split(/\s+/).slice(0, 40).join(" ");
+  return first40Words;
+};
 
 const Article: React.FC<ArticleProps> = ({ params }) => {
   const [doctorsList, setDoctorsList] = useState<any[]>([]);
@@ -88,14 +96,42 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
 
   return (
     <div className="mt-5 px-5  grid grid-cols-1 lg:grid-cols-4 gap-4">
+      <Head>
+        <title>{doctorsList[0]?.attributes?.Title} </title>
+        <meta property="og:title" content={doctorsList[0]?.attributes?.Title} />
+        <meta
+          property="og:description"
+          content= {extractFirst40Words(doctorsList[0]?.attributes?.Text)}
+        />
+        <meta property="og:image" content={PUBLIC_URL + doctorsList[0]?.attributes?.Image?.data?.attributes?.url} />
+        <meta property="og:url" content="https://bracketed.tech" />
+      </Head>
+      <NextSeo
+        title={doctorsList[0]?.attributes?.Title} 
+        description={extractFirst40Words(doctorsList[0]?.attributes?.Text)}
+        openGraph={{
+          url: "https://bracketed.tech",
+          title: `${doctorsList[0]?.attributes?.Title}`,
+          images: [
+            {
+              url: `${PUBLIC_URL + doctorsList[0]?.attributes?.Image?.data?.attributes?.url}`,
+              width: 800,
+              height: 600,
+              alt: "Og Image Alt",
+              type: "image/jpeg",
+            },
+          ],
+        }}
+      />
       <div className="col-span-3 px-0 md:px-14">
         <div className="py-5 ">
           <h1 className="text-3xl font-bold text-left">
             {doctorsList[0]?.attributes?.Title}
           </h1>
           <h1 className="text-sm mt-2">
-            <span className="italic text-gray-400">By </span>
-            <span className="italic">Ramy Jaber </span> On
+            {/* <span className="italic text-gray-400">By </span>
+            <span className="italic">Ramy Jaber </span>  */}
+            Posted On
             <span className="text-gray-400 ml-1">
               {new Date(
                 doctorsList[0]?.attributes?.createdAt
@@ -111,7 +147,10 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
         <div className="my-5">
           <Image
             alt=""
-            src={`${PUBLIC_URL+doctorsList[0]?.attributes?.Image?.data?.attributes?.url}`}
+            src={`${
+              PUBLIC_URL +
+              doctorsList[0]?.attributes?.Image?.data?.attributes?.url
+            }`}
             width={900}
             height={900}
             className="h-full w-full object-contain rounded-3xl shadow-xl"
@@ -132,7 +171,9 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
             >
               <Image
                 alt=""
-                src={`${PUBLIC_URL+item.attributes?.Image?.data?.attributes?.url}`}
+                src={`${
+                  PUBLIC_URL + item.attributes?.Image?.data?.attributes?.url
+                }`}
                 width={160}
                 height={140}
                 className="w-24 h-20 object-cover  rounded-2xl shadow-3xl"

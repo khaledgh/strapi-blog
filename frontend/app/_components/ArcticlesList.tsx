@@ -69,11 +69,9 @@ const ArcticlesList: React.FC<{ articles: Article[] }> = ({ articles }) => {
             </Link>
           ))
         : [1, 2, 3, 4, 5, 6].map((item, index) => (
-            <div className="grid grid-cols-1 md:gird-cols-2 lg:grid-cols-4 gap-4">
               <div>
                 <SkeletonArticles />
               </div>
-            </div>
           ))}
     </div>
   );
