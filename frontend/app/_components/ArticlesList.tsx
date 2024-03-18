@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SkeletonArticles from "./SkeletonArticles";
 
-
-const PUBLIC_URL =process.env.NEXT_PUBLIC_URL;
+const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
 const extractFirst40Words = (htmlContent: string) => {
   const plainText = htmlContent?.replace(/<[^>]+>/g, "");
@@ -12,7 +11,8 @@ const extractFirst40Words = (htmlContent: string) => {
   return first40Words;
 };
 
-const ArcticlesList: React.FC<{ articles: Article[] }> = ({ articles }) => {
+const ArticlesList: React.FC<{ articles: Article[] }> = ({ articles }) => {
+  if (!articles) return;
   return (
     <div className="grid grid-cols-1 md:gird-cols-2 lg:grid-cols-4 gap-4">
       {articles?.length > 0
@@ -24,7 +24,9 @@ const ArcticlesList: React.FC<{ articles: Article[] }> = ({ articles }) => {
             >
               <Image
                 alt=""
-                src={`${PUBLIC_URL+item.attributes?.Image?.data?.attributes?.url}`}
+                src={`${
+                  PUBLIC_URL + item.attributes?.Image?.data?.attributes?.url
+                }`}
                 width={800}
                 height={800}
                 className="h-56 w-full object-cover p-2 rounded-3xl shadow-3xl"
@@ -42,21 +44,18 @@ const ArcticlesList: React.FC<{ articles: Article[] }> = ({ articles }) => {
                 >
                   {new Date(item?.attributes?.createdAt).toLocaleString()}{" "}
                 </time>
-                <a href="#">
+                <div>
                   <h3 className="mt-0.5 text-lg text-black dark:text-white dark:font-extrabold">
                     {item?.attributes?.Title}
                   </h3>
-                </a>
+                </div>
 
-                <p className="mt-2 text-sm/relaxed dark:text-white">
-                  <div className="dark:text-white text-sm not-italic not-font-bold line-clamp-4">
+                <div className="mt-2 text-sm/relaxed dark:text-white">
+                  <span className="dark:text-white text-sm not-italic not-font-bold line-clamp-4">
                     {extractFirst40Words(item?.attributes?.Text)}...
-                  </div>
-                </p>
-                <a
-                  href="#"
-                  className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
-                >
+                  </span>
+                </div>
+                <div className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
                   Read more
                   <span
                     aria-hidden="true"
@@ -64,17 +63,17 @@ const ArcticlesList: React.FC<{ articles: Article[] }> = ({ articles }) => {
                   >
                     &rarr;
                   </span>
-                </a>
+                </div>
               </div>
             </Link>
           ))
         : [1, 2, 3, 4, 5, 6].map((item, index) => (
-              <div>
-                <SkeletonArticles />
-              </div>
+            <div key={index}>
+              <SkeletonArticles />
+            </div>
           ))}
     </div>
   );
 };
 
-export default ArcticlesList;
+export default ArticlesList;

@@ -1,24 +1,25 @@
-"use client";
-
-import ArcticlesList from "@/app/_components/ArcticlesList";
+import ArticlesList from "@/app/_components/ArticlesList";
 import GlobalApi from "@/app/_utils/GlobalApi";
-import { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
-
 interface ArticleProps {
   params: any; // Update with the actual type of params
 }
 
-const Tag: React.FC<ArticleProps> = ({ params }) => {
-  const [articles, SetArticles] = useState<Article[]>([]);
-  useEffect(() => {
-    getArticleList();
-  }, []);
-  const getArticleList = () => {
-    GlobalApi.getRelatedArticlesByTagList(params.tag).then((resp: AxiosResponse<ArticlesResponse>) => {
-      SetArticles(resp?.data?.data);
-    });
-  };
+async function getData() {
+  const resp = await GlobalApi.getArticlesList();
+  return resp?.data?.data;
+}
+
+async function Tag({ params }:ArticleProps) {
+  const articles = await getData();
+  // const [articles, SetArticles] = useState<Article[]>([]);
+  // useEffect(() => {
+  //   getArticleList();
+  // }, []);
+  // const getArticleList = () => {
+  //   GlobalApi.getRelatedArticlesByTagList(params.tag).then((resp: AxiosResponse<ArticlesResponse>) => {
+  //     SetArticles(resp?.data?.data);
+  //   });
+  // };
 
   return (
     <main className="flex min-h-screen flex-col py-10 px-24">
@@ -26,7 +27,7 @@ const Tag: React.FC<ArticleProps> = ({ params }) => {
         #{decodeURIComponent(params.tag)}
       </h1>
       <div className="mt-10">
-        <ArcticlesList articles={articles} />
+        <ArticlesList articles={articles} />
       </div>
     </main>
   );

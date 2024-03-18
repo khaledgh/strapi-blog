@@ -90,7 +90,6 @@ const HighlightedText: React.FC<HighlightedTextProps> = ({ html }) => {
     return { processedHTML, highlightedCodeMap };
   };
 
-  const [copied, setCopied] = useState(false);
   const { processedHTML, highlightedCodeMap } = highlightCodeBlocks(html);
 
   return (
