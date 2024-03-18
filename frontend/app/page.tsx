@@ -1,3 +1,4 @@
+'use client'
 import ArticlesList from "./_components/ArticlesList";
 import GlobalApi from "./_utils/GlobalApi";
 

@@ -2,8 +2,6 @@ const { default: axios } = require("axios");
 
 const API_KEY = process.env.NEXT_PUBLIC_STRAPI_API_KEY;
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
-console.log(API_KEY);
-console.log(PUBLIC_URL);
 const axiosClient = axios.create({
   baseURL: `${PUBLIC_URL}/api`,
   headers: {
