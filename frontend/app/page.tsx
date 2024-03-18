@@ -1,5 +1,4 @@
 import ArticlesList from "./_components/ArticlesList";
-import HomeArticles from "./_components/HomeArticles";
 import GlobalApi from "./_utils/GlobalApi";
 
 async function getData() {

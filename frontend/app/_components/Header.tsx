@@ -1,19 +1,13 @@
 "use client";
 import {
-  HoverCard,
   Group,
-  Button,
   UnstyledButton,
   Text,
-  SimpleGrid,
   ThemeIcon,
-  Anchor,
   Divider,
-  Center,
   Box,
   Burger,
   Drawer,
-  Collapse,
   ScrollArea,
   rem,
   useMantineTheme,
@@ -26,12 +20,12 @@ import {
   IconBook,
   IconChartPie3,
   IconFingerprint,
-  IconCoin,
-  IconChevronDown,
+  IconCoin
 } from "@tabler/icons-react";
 import classes from "./HeaderMegaMenu.module.css";
-import Link from "next/link";
+import { revalidatePath } from "next/cache"
 import Image from "next/image";
+import Link from "next/link";
 
 const mockdata = [
   {
@@ -99,7 +93,7 @@ export function Header() {
     <Box className="py-4 px-2 md:px-14 shadow-md">
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <Link href="/" className={classes.link}>
+          <Link href="/" prefetch={false} className={classes.link}>
             <Image
               src={`${PUBLIC_URL}/uploads/bracketed_high_resolution_logo_white_a4ab270cc9.png`}
               width={200}
@@ -108,16 +102,16 @@ export function Header() {
             />
           </Link>
           <Group h="100%" gap={0} visibleFrom="sm">
-            <Link href="/" className={classes.link}>
+            <Link href="/" prefetch={false} className={classes.link}>
               Home
             </Link>
-            <Link href="/" className={classes.link}>
+            <Link href="/" prefetch={false} className={classes.link}>
               Website
             </Link>
-            <Link href="/" className={classes.link}>
+            <Link href="/" prefetch={false} className={classes.link}>
               Mobile
             </Link>
-            <Link href="/" className={classes.link}>
+            <Link href="/" prefetch={false} className={classes.link}>
               Desktop
             </Link>
           </Group>
@@ -147,16 +141,16 @@ export function Header() {
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
-          <Link href="/" className={classes.link}>
+          <Link href="/" prefetch={false}  className={classes.link}>
             Home
           </Link>
-          <Link href="/" className={classes.link}>
+          <Link href="/" prefetch={false} className={classes.link}>
             Website
           </Link>
-          <Link href="/" className={classes.link}>
+          <Link href="/" prefetch={false} className={classes.link}>
             Mobile
           </Link>
-          <Link href="/" className={classes.link}>
+          <Link href="/" prefetch={false} className={classes.link}>
             Desktop
           </Link>
 
