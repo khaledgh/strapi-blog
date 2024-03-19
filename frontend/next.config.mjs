@@ -3,9 +3,7 @@ const nextConfig = {
   images: {
     domains: ["localhost", "blog.bracketed.tech"],
   },
-  publicRuntimeConfig: {
-    trailingSlash: true,
-  },
+  output: 'standalone',
 };
 
 export default nextConfig;
