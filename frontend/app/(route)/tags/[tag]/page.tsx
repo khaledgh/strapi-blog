@@ -22,7 +22,7 @@ async function Tag({ params }:ArticleProps) {
   // };
 
   return (
-    <main className="flex min-h-screen flex-col py-10 px-24">
+    <main className="flex min-h-screen flex-col py-10 px-10 lg:px-24">
       <h1 className="text-center text-3xl font-bold text-white">
         #{decodeURIComponent(params.tag)}
       </h1>
