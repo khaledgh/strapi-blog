@@ -7,11 +7,10 @@ import "prismjs/components/prism-javascript";
 import HighlightedText from "@/app/_components/CodeText";
 //import { Image } from "@mantine/core";
 import Image from "next/image";
-import { Loader } from "@mantine/core";
+import {Spinner} from "@nextui-org/react";
 import Link from "next/link";
 import { AxiosResponse } from "axios";
 import Head from "next/head";
-import { NextSeo } from "next-seo";
 interface ArticleProps {
   params: any; // Update with the actual type of params
 }
@@ -85,7 +84,7 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <Loader color="blue" />
+        <Spinner />
       </div>
     );
   }
@@ -106,23 +105,6 @@ const Article: React.FC<ArticleProps> = ({ params }) => {
         <meta property="og:image" content={PUBLIC_URL + doctorsList[0]?.attributes?.Image?.data?.attributes?.url} />
         <meta property="og:url" content="https://bracketed.tech" />
       </Head>
-      <NextSeo
-        title={doctorsList[0]?.attributes?.Title} 
-        description={extractFirst40Words(doctorsList[0]?.attributes?.Text)}
-        openGraph={{
-          url: "https://bracketed.tech",
-          title: `${doctorsList[0]?.attributes?.Title}`,
-          images: [
-            {
-              url: `${PUBLIC_URL + doctorsList[0]?.attributes?.Image?.data?.attributes?.url}`,
-              width: 800,
-              height: 600,
-              alt: "Og Image Alt",
-              type: "image/jpeg",
-            },
-          ],
-        }}
-      />
       <div className="col-span-3 px-0 md:px-14">
         <div className="py-5 ">
           <h1 className="text-3xl font-bold text-left">

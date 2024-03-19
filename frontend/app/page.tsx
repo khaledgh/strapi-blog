@@ -6,15 +6,12 @@ async function getData() {
   return resp?.data?.data;
 }
 
-export const dynamic = 'force-dynamic';
-
 export default async function Home() {
   const articles = await getData();
+  if (!articles) return;
   return (
-    <main className="flex min-h-screen flex-col py-10 px-24">
-      <div>
-        <ArticlesList articles={articles} />
-      </div>
+    <main className="flex min-h-screen flex-col py-10 px-10 lg:px-24">
+      <ArticlesList articles={articles} />
     </main>
   );
 }
