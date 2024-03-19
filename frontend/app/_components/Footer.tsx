@@ -1,53 +1,30 @@
-"use client";
-import { Container, Group, Anchor } from "@mantine/core";
-import classes from "./Footer.module.css";
 import Image from "next/image";
-import Link from "next/link";
-
-const links = [
-  { link: "#", label: "Contact" },
-  { link: "#", label: "Privacy" },
-  { link: "#", label: "Blog" },
-  { link: "#", label: "Careers" },
-];
+import { useTheme } from "next-themes";
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 export function Footer() {
-  const items = links.map((link) => (
-    <Anchor<"a">
-      c="dimmed"
-      key={link.label}
-      href={link.link}
-      onClick={(event) => event.preventDefault()}
-      size="sm"
-    >
-      {link.label}
-    </Anchor>
-  ));
-
+  const { theme } = useTheme();
   return (
-    <div className={`${classes.footer} py-4 px-2 md:px-14 shadow-md`}>
-      <Container className={classes.inner}>
-        <Image
-          src={`${PUBLIC_URL}/uploads/bracketed_high_resolution_logo_white_a4ab270cc9.png`}
-          width={200}
-          height={50}
-          alt="logo"
-        />
-        <Group className={classes.links}>
-          <Link href="/" className={classes.link}>
-            Home
-          </Link>
-          <Link href="/" className={classes.link}>
-            Website
-          </Link>
-          <Link href="/" className={classes.link}>
-            Mobile
-          </Link>
-          <Link href="/" className={classes.link}>
-            Desktop
-          </Link>
-        </Group>
-      </Container>
-    </div>
+    <footer  className="border-t-1 border-gray-300 dark:border-gray-800 shadow-sm dark:shadow-xl">
+      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <div className="flex justify-center text-teal-600 sm:justify-start">
+            <Image
+              src={`${PUBLIC_URL}/uploads/${
+                theme == "light"
+                  ? "bracketed_high_resolution_logo_black_transparent_336ee78171.png"
+                  : "bracketed_high_resolution_logo_white_a4ab270cc9.png"
+              }`}
+              width={150}
+              height={50}
+              alt="logo"
+            />
+          </div>
+
+          <p className="mt-4 text-center text-sm text-gray-500 lg:mt-0 lg:text-right">
+            Copyright &copy; 2024. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }

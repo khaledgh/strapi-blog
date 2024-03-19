@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -5,8 +6,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 //import { monokai } from 'react-syntax-highlighter/dist/esm/styles/prism';
 //import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
-
-import { ActionIcon, CopyButton, Tooltip } from "@mantine/core";
+ 
 import { IconCheck, IconCopy } from "@tabler/icons-react";
 
 interface HighlightedTextProps {
@@ -59,7 +59,7 @@ const HighlightedText: React.FC<HighlightedTextProps> = ({ html }) => {
               cursor: "pointer",
             }}
           >
-            <CopyButton value={decodeEntities(code.trim())} timeout={3000}>
+            {/* <CopyButton value={decodeEntities(code.trim())} timeout={3000}>
               {({ copied, copy }) => (
                 <Tooltip
                   label={copied ? "Copied" : "Copy"}
@@ -79,7 +79,7 @@ const HighlightedText: React.FC<HighlightedTextProps> = ({ html }) => {
                   </ActionIcon>
                 </Tooltip>
               )}
-            </CopyButton>
+            </CopyButton> */}
           </div>
         </div>
       );
