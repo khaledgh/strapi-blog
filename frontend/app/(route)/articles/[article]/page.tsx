@@ -21,7 +21,7 @@ const extractFirst40Words = (htmlContent: string) => {
 
 export const generateMetadata = async ({ params }: any) => {
   const article = await getArticle(params.article);
-
+            
   const title = article[0]?.attributes?.Title;
   const desc = extractFirst40Words(article[0]?.attributes?.Text);
   const image =
@@ -30,14 +30,8 @@ export const generateMetadata = async ({ params }: any) => {
     title: title,
     description: desc,
     openGraph: {
-      images: [
-        {
-          image,
-          width: 800,
-          height: 600,
-        },
-      ],
-    },
+      images: [image]
+    }
   };
 };
 
