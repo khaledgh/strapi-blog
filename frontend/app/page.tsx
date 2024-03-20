@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import ArticlesList from "./_components/ArticlesList";
 import GlobalApi from "./_utils/GlobalApi";
 
@@ -7,8 +8,10 @@ async function getData() {
 }
 
 export default async function Home() {
+  revalidatePath(`/`)
   const articles = await getData();
   if (!articles) return;
+
   return (
     <main className="flex min-h-screen flex-col py-10 px-10 lg:px-24">
       <ArticlesList articles={articles} />
