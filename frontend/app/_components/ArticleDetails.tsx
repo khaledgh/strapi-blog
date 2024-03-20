@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
-function ArticleDetails({ articleList, relatedList }: any) {
+function ArticleDetails({ articleList, relatedList }:{articleList: ArticlesResponse, relatedList: ArticlesResponse} ) {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
