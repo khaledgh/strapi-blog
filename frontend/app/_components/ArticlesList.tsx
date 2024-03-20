@@ -5,9 +5,9 @@ import SkeletonArticles from "./SkeletonArticles";
 
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
-const extractFirst40Words = (htmlContent: string) => {
+const extractFirst40Words = (htmlContent: string, nb: number) => {
   const plainText = htmlContent?.replace(/<[^>]+>/g, "");
-  const first40Words = plainText?.split(/\s+/).slice(0, 40).join(" ");
+  const first40Words = plainText?.split(/\s+/).slice(0, nb).join(" ");
   return first40Words;
 };
 
@@ -45,14 +45,14 @@ const ArticlesList: React.FC<{ articles: Article[] }> = ({ articles }) => {
                   {new Date(item?.attributes?.createdAt).toLocaleString()}{" "}
                 </time>
                 <div>
-                  <h3 className="mt-0.5 text-lg text-black dark:text-white dark:font-extrabold">
+                  <h3 className="mt-0.5 text-lg text-black dark:text-white dark:font-extrabold line-clamp-2">
                     {item?.attributes?.Title}
                   </h3>
                 </div>
 
                 <div className="mt-2 text-sm/relaxed dark:text-white">
                   <span className="dark:text-white text-sm not-italic not-font-bold line-clamp-4">
-                    {extractFirst40Words(item?.attributes?.Text)}...
+                    {extractFirst40Words(item?.attributes?.Text, 40)}...
                   </span>
                 </div>
                 <div className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">

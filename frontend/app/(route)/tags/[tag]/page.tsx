@@ -4,13 +4,13 @@ interface ArticleProps {
   params: any; // Update with the actual type of params
 }
 
-async function getData() {
-  const resp = await GlobalApi.getArticlesList();
+async function getData(tag: string) {
+  const resp = await GlobalApi.getRelatedArticlesByTagList(tag);
   return resp?.data?.data;
 }
 
-async function Tag({ params }:ArticleProps) {
-  const articles = await getData();
+async function Tag({ params }: ArticleProps) {
+  const articles = await getData(params.tag);
   // const [articles, SetArticles] = useState<Article[]>([]);
   // useEffect(() => {
   //   getArticleList();
@@ -31,6 +31,6 @@ async function Tag({ params }:ArticleProps) {
       </div>
     </main>
   );
-};
+}
 
 export default Tag;

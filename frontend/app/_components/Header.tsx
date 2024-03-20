@@ -41,7 +41,7 @@ export default function Header() {
         <NavbarBrand>
           <Link href="/">
             <Image
-              src={`${PUBLIC_URL}/uploads/${theme == "light" ? 'bracketed_high_resolution_logo_black_transparent_336ee78171.png' : "bracketed_high_resolution_logo_white_a4ab270cc9.png"}`}
+              src={`${PUBLIC_URL}/uploads/${theme == "light" ? 'bracketed_high_resolution_logo_black_transparent_f63d4ea087.png' : "bracketed_high_resolution_logo_white_transparent_fa0df6594d.png"}`}
               width={150}
               height={50}
               alt="logo"

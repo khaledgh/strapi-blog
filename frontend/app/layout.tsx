@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Bracketed",
   description: "Tech Blog",
   icons: {
-    icon: "https://blog.bracketed.tech/uploads/bracketed_high_resolution_logo_black_transparent_336ee78171_b86002b1de.png",
+    icon: "https://blog.bracketed.tech/uploads/bracketed_high_resolution_logo_black_transparent_f63d4ea087.png",
   },
 };
 
