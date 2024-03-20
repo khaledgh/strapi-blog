@@ -11,16 +11,6 @@ async function getData(tag: string) {
 
 async function Tag({ params }: ArticleProps) {
   const articles = await getData(params.tag);
-  // const [articles, SetArticles] = useState<Article[]>([]);
-  // useEffect(() => {
-  //   getArticleList();
-  // }, []);
-  // const getArticleList = () => {
-  //   GlobalApi.getRelatedArticlesByTagList(params.tag).then((resp: AxiosResponse<ArticlesResponse>) => {
-  //     SetArticles(resp?.data?.data);
-  //   });
-  // };
-
   return (
     <main className="flex min-h-screen flex-col py-10 px-10 lg:px-24">
       <h1 className="text-center text-3xl font-bold text-white">
