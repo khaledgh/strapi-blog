@@ -1,14 +1,13 @@
-import { revalidatePath } from "next/cache";
 import ArticlesList from "./_components/ArticlesList";
 import GlobalApi from "./_utils/GlobalApi";
-
+import { unstable_noStore as noStore } from "next/cache"
 async function getData() {
   const resp = await GlobalApi.getArticlesList();
   return resp?.data?.data;
 }
-
+export const revalidate = 0
 export default async function Home() {
-  revalidatePath(`/`)
+  noStore()
   const articles = await getData();
   if (!articles) return;
 
