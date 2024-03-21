@@ -12,7 +12,7 @@ const axiosClient = axios.create({
 const getArticlesList = () => axiosClient.get("posts?populate=*");
 
 const getRelatedArticlesList = (tagsQuery, excludedId) =>
-  axiosClient.get(`posts?${tagsQuery}&filters[id][$notIn]=${excludedId}&pagination[pageSize]=10&populate=*`)
+  axiosClient.get(`posts?${tagsQuery}&filters[slug][$notIn]=${excludedId}&pagination[pageSize]=10&populate=*`)
 
   const getRelatedArticlesByTagList = (tagsQuery) =>
   axiosClient.get(`posts?filters[tags][Name][$contains]=${tagsQuery}&pagination[pageSize]=10&populate=*`, { cache: false });
