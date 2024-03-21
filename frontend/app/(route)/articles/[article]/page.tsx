@@ -1,6 +1,6 @@
 import GlobalApi from "@/app/_utils/GlobalApi";
 import ArticleDetails from "@/app/_components/ArticleDetails";
-
+import { unstable_noStore as noStore } from "next/cache";
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
 async function getArticle(article: string) {
@@ -9,7 +9,7 @@ async function getArticle(article: string) {
 }
 
 async function getRelatedArticle(tags: String, article: String) {
-  const res = GlobalApi.getRelatedArticlesList(tags, article);
+  const res = await GlobalApi.getRelatedArticlesList(tags, article);
   return res?.data?.data;
 }
 
@@ -21,7 +21,7 @@ const extractFirst40Words = (htmlContent: string) => {
 
 export const generateMetadata = async ({ params }: any) => {
   const article = await getArticle(params.article);
-            
+
   const title = article[0]?.attributes?.Title;
   const desc = extractFirst40Words(article[0]?.attributes?.Text);
   const image =
@@ -30,16 +30,24 @@ export const generateMetadata = async ({ params }: any) => {
     title: title,
     description: desc,
     openGraph: {
-      images: [image]
-    }
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: desc,
+      images: [image],
+    },
   };
 };
 
 async function Article({ params }: any) {
+  noStore();
   const articleList = await getArticle(params.article);
   const tagsQuery = (articleList[0]?.attributes?.tags?.data)
     .map(
-      (tag: Tag) => `filters[tags][Name][$contains]=${tag?.attributes?.Name}`
+      (tag: Tag, index: number) =>
+        `filters[$or][${index}][tags][Name][$contains]=${tag?.attributes?.Name}`
     )
     .join("&");
 

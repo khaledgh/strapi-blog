@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect } from "react";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
@@ -6,10 +6,19 @@ import "prismjs/components/prism-javascript";
 import HighlightedText from "@/app/_components/CodeText";
 import Image from "next/image";
 import Link from "next/link";
+import GlobalApi from "../_utils/GlobalApi";
+import { AxiosResponse } from "axios";
 
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
-function ArticleDetails({ articleList, relatedList }:{articleList: ArticlesResponse, relatedList: ArticlesResponse} ) {
+function ArticleDetails({
+  articleList,
+  relatedList,
+}: {
+  articleList: ArticlesResponse;
+  relatedList: ArticlesResponse;
+}) {
+
   useEffect(() => {
     Prism.highlightAll();
   }, []);
