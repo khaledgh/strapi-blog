@@ -30,6 +30,8 @@ export const generateMetadata = async ({ params }: any) => {
     title: title,
     description: desc,
     openGraph: {
+      title: title,
+      description: desc,
       images: [image],
     },
     twitter: {

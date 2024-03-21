@@ -18,7 +18,7 @@ const getRelatedArticlesList = (tagsQuery, excludedId) =>
   axiosClient.get(`posts?filters[tags][Name][$contains]=${tagsQuery}&pagination[pageSize]=10&populate=*`, { cache: false });
 
 const getArticleById = (id) =>
-  axiosClient.get("/posts?filters[id][$in][0]=" + id + "&populate=*");
+  axiosClient.get("/posts?filters[slug][$in][0]=" + id + "&populate=*");
 
 const getCategory = () => axiosClient.get("categories?populate=*");
 

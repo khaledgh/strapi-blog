@@ -6,8 +6,6 @@ import "prismjs/components/prism-javascript";
 import HighlightedText from "@/app/_components/CodeText";
 import Image from "next/image";
 import Link from "next/link";
-import GlobalApi from "../_utils/GlobalApi";
-import { AxiosResponse } from "axios";
 
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
@@ -18,7 +16,6 @@ function ArticleDetails({
   articleList: ArticlesResponse;
   relatedList: ArticlesResponse;
 }) {
-
   useEffect(() => {
     Prism.highlightAll();
   }, []);
@@ -67,7 +64,7 @@ function ArticleDetails({
         {relatedList?.length > 0 ? (
           relatedList?.map((item: Article, index: number) => (
             <Link
-              href={"/articles/" + item.id}
+              href={"/articles/" + item?.attributes?.slug}
               className="flex justify-start items-center gap-3 mt-6"
               key={index}
             >
