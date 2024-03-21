@@ -1,6 +1,5 @@
 import GlobalApi from "@/app/_utils/GlobalApi";
 import ArticleDetails from "@/app/_components/ArticleDetails";
-import { unstable_noStore as noStore } from "next/cache";
 const PUBLIC_URL = process.env.NEXT_PUBLIC_URL;
 
 async function getArticle(article: string) {
@@ -21,6 +20,12 @@ const extractFirst40Words = (htmlContent: string) => {
 
 export const generateMetadata = async ({ params }: any) => {
   const article = await getArticle(params.article);
+  const tagsQuery = (article[0]?.attributes?.tags?.data)
+  .map(
+    (tag: Tag, index: number) =>
+      `${tag?.attributes?.Name}`
+  )
+  .join(", ");
 
   const title = article[0]?.attributes?.Title;
   const desc = extractFirst40Words(article[0]?.attributes?.Text);
@@ -29,6 +34,7 @@ export const generateMetadata = async ({ params }: any) => {
   return {
     title: title,
     description: desc,
+    keywords: tagsQuery,
     openGraph: {
       title: title,
       description: desc,
@@ -44,7 +50,6 @@ export const generateMetadata = async ({ params }: any) => {
 };
 
 async function Article({ params }: any) {
-  noStore();
   const articleList = await getArticle(params.article);
   const tagsQuery = (articleList[0]?.attributes?.tags?.data)
     .map(
