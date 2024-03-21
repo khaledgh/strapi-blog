@@ -6,9 +6,25 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Bracketed",
-  description: "Tech Blog",
+  keywords:
+    "Bracketed, Tech, React, Website, Web, Desktop, Mobile, Web App, Application, Next js, Tailwind",
+  description:
+    "Bracketed: Learn new skills, solve problems, and stay ahead of the curve in the programming world.",
   icons: {
-    icon: "https://blog.bracketed.tech/uploads/bracketed_high_resolution_logo_black_transparent_f63d4ea087.png",
+    icon: "https://blog.bracketed.tech/uploads/bracketed_favicon_black_5d343f064e.png",
+  },
+  openGraph: {
+    title: "Bracketed",
+    description:
+      "Bracketed: Learn new skills, solve problems, and stay ahead of the curve in the programming world.",
+    images: ["https://blog.bracketed.tech/uploads/bracketed_5cedd374d7.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bracketed",
+    description:
+      "Bracketed: Learn new skills, solve problems, and stay ahead of the curve in the programming world.",
+    images: ["https://blog.bracketed.tech/uploads/bracketed_5cedd374d7.png"],
   },
 };
 
