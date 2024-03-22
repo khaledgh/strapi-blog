@@ -27,17 +27,7 @@ export default [
             "ws:",
             "blob:",
           ],
-          "img-src": [
-            "'self'",
-            "*.tinymce.com",
-            "*.tiny.cloud",
-            "data:",
-            "blob:",
-            "dl.airtable.com",
-            "strapi.io",
-            "s3.amazonaws.com",
-            "cdn.jsdelivr.net",
-          ],
+          "img-src": ['*'],
           "style-src": [
             "'self'",
             "'unsafe-inline'",
