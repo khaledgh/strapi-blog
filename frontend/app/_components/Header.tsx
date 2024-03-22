@@ -73,7 +73,7 @@ export default function Header() {
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
-        {menuItems.map((item, index) => (
+        {/* {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
               color={
@@ -90,7 +90,7 @@ export default function Header() {
               {item}
             </Link>
           </NavbarMenuItem>
-        ))}
+        ))} */}
       </NavbarMenu>
     </Navbar>
   );
