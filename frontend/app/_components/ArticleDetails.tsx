@@ -55,7 +55,7 @@ function ArticleDetails({
             className="h-full w-full object-contain rounded-3xl shadow-xl"
           />
         </div>
-        <HighlightedText html={articleList[0]?.attributes?.Text} />
+        <HighlightedText html={articleList[0]?.attributes?.article} />
       </div>
       <div className="col-span-1 px-0 md:px-10 items-end">
         <h1 className="text-xl text-black dark:text-white font-medium mt-20 text-left">
