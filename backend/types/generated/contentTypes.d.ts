@@ -850,6 +850,13 @@ export interface ApiPostPost extends Schema.CollectionType {
     tags: Attribute.Relation<'api::post.post', 'manyToMany', 'api::tag.tag'>;
     article: Attribute.RichText;
     test: Attribute.Blocks;
+    test1: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'custom';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
