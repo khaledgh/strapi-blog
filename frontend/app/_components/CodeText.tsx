@@ -1,22 +1,18 @@
-"use client"
-import React from "react";
+import React, { useEffect } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism";
- import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-// import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/prism';
-//import { monokai } from 'react-syntax-highlighter/dist/esm/styles/prism';
-//import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { CopyBlock, vs2015} from "react-code-blocks"; 
-
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+// import xss from "xss";
+// import Prism from "prismjs";
+import "prismjs/themes/prism.css";
+import he from "he"; // Import the 'he' library
+import ReactDOMServer from "react-dom/server";
 interface HighlightedTextProps {
   html: string;
 }
 
 const HighlightedText: React.FC<HighlightedTextProps> = ({ html }) => {
-  const decodeEntities = (html: string) => {
-    const element = document.createElement("div");
-    element.innerHTML = html;
-    return element.textContent || element.innerText || "";
+  const decodeEntities = (htmlString: string) => {
+    return he.decode(htmlString); // Use he.decode to decode HTML entities
   };
 
   const highlightCodeBlocks = (html: string) => {
@@ -24,37 +20,36 @@ const HighlightedText: React.FC<HighlightedTextProps> = ({ html }) => {
       /<pre><code class="language-([a-zA-Z]+)">(.*?)<\/code><\/pre>/gs;
 
     let currentIndex = 0;
-    const highlightedCodeMap: Record<string, React.ReactNode> = {};
+    let processedHTML =decodeEntities(html);
 
-    const processedHTML = html.replace(codeRegex, (_, language, code) => {
-      const key = `REACT_SYNTAX_HIGHLIGHTER_${currentIndex++}`;
-
-      highlightedCodeMap[key] = (
-        <CopyBlock 
-              text={decodeEntities(code)}
-              language={language}
-              showLineNumbers={false}
-              theme={vs2015} 
-              copied={false}
-              wrapLongLines
-            /> 
-
+    processedHTML = processedHTML.replace(codeRegex, (_, language, code) => {
+      const highlightedCode = ReactDOMServer.renderToString(
+        <div key={`REACT_SYNTAX_HIGHLIGHTER_${currentIndex++}`}>
+          <SyntaxHighlighter
+            language={language}
+            style={oneDark}
+            showLineNumbers={true}
+            customStyle={{
+              scrollbarWidth: "thin", // Firefox
+              scrollbarColor: "rgba(59, 130, 246, 0.3) transparent", // Firefox
+            }}
+          >
+            {code}
+          </SyntaxHighlighter>
+        </div>
       );
 
-      return "";
+      return `<div>${highlightedCode}</div>`;
     });
 
-    return { processedHTML, highlightedCodeMap };
+    return processedHTML;
   };
+  // useEffect(() => {
+  //   Prism.highlightAll();
+  // }, []);
+  const processedHTML = highlightCodeBlocks(html);
 
-  const { processedHTML, highlightedCodeMap } = highlightCodeBlocks(html);
-
-  return (
-    <div>
-      <div dangerouslySetInnerHTML={{ __html: processedHTML }} />
-      {Object.values(highlightedCodeMap)}
-    </div>
-  );
+  return <div dangerouslySetInnerHTML={{ __html: processedHTML }} />;
 };
 
 export default HighlightedText;
