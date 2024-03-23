@@ -48,6 +48,12 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "inversedBy": "posts"
+    },
+    "article": {
+      "type": "richtext"
+    },
+    "test": {
+      "type": "blocks"
     }
   }
 }

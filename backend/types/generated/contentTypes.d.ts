@@ -848,6 +848,8 @@ export interface ApiPostPost extends Schema.CollectionType {
       'api::category.category'
     >;
     tags: Attribute.Relation<'api::post.post', 'manyToMany', 'api::tag.tag'>;
+    article: Attribute.RichText;
+    test: Attribute.Blocks;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
