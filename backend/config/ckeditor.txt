@@ -98,6 +98,14 @@ globalThis.CKEditorConfig = {
                     // ui:'he',
                     // content:'he'
                   },
+                codeBlock: {
+                      languages: [
+                          { language: 'css', label: 'CSS' },
+                          { language: 'html', label: 'HTML' },
+                          { language: 'javascript', label: 'JavaScript' },
+                          { language: 'php', label: 'PHP' }
+                      ]
+                  },
                   toolbar: [
                     'heading',
                     '|',
