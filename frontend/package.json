@@ -30,7 +30,6 @@
     "xss": "^1.0.15"
   },
   "devDependencies": {
-    "@types/dompurify": "^3.0.5",
     "@types/he": "^1.2.3",
     "@types/mapbox__rehype-prism": "^0.8.3",
     "@types/node": "^20",
