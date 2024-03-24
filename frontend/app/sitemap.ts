@@ -9,16 +9,10 @@ async function getData() {
 
 export default async function sitemap() {
   const blog = await getData();
-
-  const posts = blog.map((item: Article, index: number) => ({
-    url: `${PUBLIC_URL}/articles/${item?.attributes?.slug}`,
+  return blog.map((item: Article, index: number) => ({
+    url: `https://www.bracketed.tech/articles/${item?.attributes?.slug}`,
     lastModified: item?.attributes?.updatedAt,
+    changeFrequency: 'weekly',
+    priority: 0.5
   }));
-
-  const routes = ["", "/blog", "/about"].map((route) => ({
-    url: `${URL}${route}`,
-    lastModified: new Date().toISOString(),
-  }));
-
-  return [...routes, ...posts];
 }

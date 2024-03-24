@@ -13,7 +13,7 @@ const extractFirst40Words = (htmlContent: string, nb: number) => {
 
 const ArticlesList: React.FC<{ articles: Article[] }> = ({ articles }) => {
   if (!articles) return;
-  console.log(articles);
+
   return (
     <div className="grid grid-cols-1 md:gird-cols-2 lg:grid-cols-4 gap-4">
       {articles?.length > 0
