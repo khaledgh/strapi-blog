@@ -21,13 +21,12 @@ const extractFirst40Words = (htmlContent: string) => {
 export const generateMetadata = async ({ params }: any) => {
   const article = await getArticle(params.article);
   const tagsQuery = (article[0]?.attributes?.tags?.data)
-  .map(
-    (tag: Tag, index: number) =>
-      `${tag?.attributes?.Name}`
-  )
-  .join(", ");
+    .map((tag: Tag, index: number) => `${tag?.attributes?.Name}`)
+    .join(", ");
 
   const title = article[0]?.attributes?.Title;
+  const slug = article[0]?.attributes?.slug;
+
   const desc = extractFirst40Words(article[0]?.attributes?.Text);
   const image =
     PUBLIC_URL + article[0]?.attributes?.Image?.data?.attributes?.url;
@@ -35,6 +34,9 @@ export const generateMetadata = async ({ params }: any) => {
     title: title,
     description: desc,
     keywords: tagsQuery,
+    alternates: {
+      canonical: `${PUBLIC_URL}/articles/${slug}`,
+    },
     openGraph: {
       title: title,
       description: desc,

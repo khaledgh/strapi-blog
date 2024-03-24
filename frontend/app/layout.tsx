@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "https://blog.bracketed.tech/uploads/bracketed_favicon_black_5d343f064e.png",
   },
+  alternates: {
+    canonical: `https://www.blog.bracketed.tech/`,
+  },
   openGraph: {
     title: "Bracketed",
     description:
