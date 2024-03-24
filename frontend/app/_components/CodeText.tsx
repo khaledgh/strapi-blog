@@ -20,7 +20,7 @@ const HighlightedText: React.FC<HighlightedTextProps> = ({ html }) => {
       /<pre><code class="language-([a-zA-Z]+)">(.*?)<\/code><\/pre>/gs;
 
     let currentIndex = 0;
-    let processedHTML =decodeEntities(html);
+    let processedHTML = html;
 
     processedHTML = processedHTML.replace(codeRegex, (_, language, code) => {
       const highlightedCode = ReactDOMServer.renderToString(
@@ -34,7 +34,7 @@ const HighlightedText: React.FC<HighlightedTextProps> = ({ html }) => {
               scrollbarColor: "rgba(59, 130, 246, 0.3) transparent", // Firefox
             }}
           >
-            {code}
+            {decodeEntities(code)}
           </SyntaxHighlighter>
         </div>
       );
