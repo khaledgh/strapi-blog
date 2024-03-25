@@ -8,14 +8,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Bracketed",
   keywords:
-    "Bracketed, Tech, React, Website, Web, Desktop, Mobile, Web App, Application, Next js, Tailwind",
+    "Bracketed, Tech, Bracketed Tech, NEXTJS, React, Website, Web, Desktop, Mobile, Web App, Application, Next js, Tailwind",
   description:
     "Bracketed: Learn new skills, solve problems, and stay ahead of the curve in the programming world.",
   icons: {
     icon: "https://blog.bracketed.tech/uploads/bracketed_favicon_black_5d343f064e.png",
   },
   alternates: {
-    canonical: `https://www.blog.bracketed.tech/`,
+    canonical: `https://www.bracketed.tech/`,
   },
   openGraph: {
     title: "Bracketed",

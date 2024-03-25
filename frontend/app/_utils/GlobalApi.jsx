@@ -9,7 +9,7 @@ const axiosClient = axios.create({
   },
 });
 
-const getArticlesList = () => axiosClient.get("posts?populate=*");
+const getArticlesList = () => axiosClient.get("posts?sort=createdAt:desc&populate=*");
 
 const getRelatedArticlesList = (tagsQuery, excludedId) =>
   axiosClient.get(`posts?${tagsQuery}&filters[slug][$notIn]=${excludedId}&pagination[pageSize]=10&populate=*`)
